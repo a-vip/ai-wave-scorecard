@@ -70,7 +70,7 @@ try {
   await page.click("#submitBtn");
   await page.waitForSelector("#quizResults:not([hidden])");
   const gate = await page.textContent("#quizResults");
-  check("gate shows zone", /Your zone:/.test(gate));
+  check("results show primary zone", /Primary:\s*(Drowning|Wading|Paddling|Riding)/i.test(gate));
 
   const email = `e2e+${Date.now()}@example.com`;
   await page.fill("#fname", "E2E Tester");
@@ -88,13 +88,31 @@ try {
   if (!TOKEN) {
     check("owner dashboard (skipped: no ADMIN_TOKEN)", true);
   } else {
+    // Direct API check with token
+    const apiCheck = await ctx.request.get(BASE + "/api/responses", { headers: { authorization: `Bearer ${TOKEN}` } });
+    check("owner API GET → 200", apiCheck.status() === 200, String(apiCheck.status()));
+    const data = await apiCheck.json().catch(() => ({}));
+    check("owner API lists E2E record", (data.records || []).some((r) => r.name === "E2E Tester"));
+
+    // UI dashboard check
     const owner = await ctx.newPage();
+    owner.on("pageerror", (e) => console.log("owner pageerror: " + e.message));
     await owner.goto(BASE + "/?owner", { waitUntil: "domcontentloaded" });
+    await owner.waitForSelector("#tab-admin:not([hidden])");
     await owner.click("#tab-admin");
+    await owner.waitForSelector("#adminKey");
     await owner.fill("#adminKey", TOKEN);
     await owner.click("#adminUnlock");
-    await owner.waitForFunction(() => /Individual scorecards/.test(document.querySelector("#adminBody")?.innerText || ""), null, { timeout: 15000 });
-    check("owner dashboard lists the new record", (await owner.textContent("#adminBody")).includes("E2E Tester"));
+    await owner.waitForFunction(
+      () => {
+        const text = document.querySelector("#adminBody")?.textContent || "";
+        return /Individual scorecards|Could not open|No saved scorecards|Access key rejected/i.test(text);
+      },
+      null,
+      { timeout: 15000 }
+    );
+    const adminText = await owner.textContent("#adminBody");
+    check("owner dashboard lists the new record", adminText.includes("E2E Tester"), adminText.slice(0, 80).replace(/\s+/g, " "));
     await owner.close();
   }
 

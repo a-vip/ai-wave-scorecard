@@ -70,9 +70,9 @@ export async function POST(req) {
 }
 
 function authorized(req) {
-  const expected = process.env.ADMIN_TOKEN || "";
+  const expected = (process.env.ADMIN_TOKEN || "").trim();
   if (!expected) return false;
-  const got = (req.headers.get("authorization") || "").replace(/^Bearer\s+/i, "");
+  const got = (req.headers.get("authorization") || "").replace(/^Bearer\s+/i, "").trim();
   const a = Buffer.from(got), b = Buffer.from(expected);
   return a.length === b.length && timingSafeEqual(a, b);
 }
