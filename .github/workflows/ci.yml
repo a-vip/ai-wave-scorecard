@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_SITE_URL: https://scorecard.example.com
+      ADMIN_TOKEN: ci-test-token
+      ALLOW_LOCAL_STORE: "1"
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Start server
+        run: npm start &
+      - name: Wait for server
+        run: npx --yes wait-on http://localhost:3000/api/health --timeout 60000
+      - name: End-to-end tests (Chrome)
+        run: npm run test:e2e
+        env:
+          E2E_CHANNEL: chrome

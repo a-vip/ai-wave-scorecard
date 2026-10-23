@@ -6,5 +6,6 @@ out/
 .env*.local
 data/
 _source/
+public/index.html
 npm-debug.log*
 .DS_Store

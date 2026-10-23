@@ -23,6 +23,20 @@ function rateLimited(ip) {
   return arr.length > 12;
 }
 
+/* Failed owner-key attempts: 8 / 15 min / IP (best-effort, per instance). */
+const authFails = new Map();
+function authBlocked(ip) {
+  const now = Date.now(), win = 15 * 60 * 1000;
+  return (authFails.get(ip) || []).filter((t) => now - t < win).length >= 8;
+}
+function noteAuthFail(ip) {
+  const now = Date.now(), win = 15 * 60 * 1000;
+  const arr = (authFails.get(ip) || []).filter((t) => now - t < win);
+  arr.push(now);
+  authFails.set(ip, arr);
+  if (authFails.size > 5000) authFails.clear();
+}
+
 function clientIp(req) {
   return (req.headers.get("x-forwarded-for") || "").split(",")[0].trim() || req.headers.get("x-real-ip") || "local";
 }
@@ -64,7 +78,12 @@ function authorized(req) {
 }
 
 export async function GET(req) {
-  if (!authorized(req)) return json({ error: "Unauthorized" }, 401);
+  const ip = clientIp(req);
+  if (authBlocked(ip)) return json({ error: "Too many attempts. Try again later." }, 429);
+  if (!authorized(req)) {
+    noteAuthFail(ip);
+    return json({ error: "Unauthorized" }, 401);
+  }
   try {
     const records = await listResponses();
     return json({ records });
