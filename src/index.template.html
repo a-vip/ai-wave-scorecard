@@ -2377,6 +2377,19 @@ document.addEventListener("click", (e) => {
   const r = e.target.closest("[data-replay]"); if (r) replay($("t-" + r.dataset.replay));
   if (e.target.id === "expandAll") { const open = e.target.dataset.open !== "1"; document.querySelectorAll("#panel-trends details.more").forEach((d) => (d.open = open)); e.target.dataset.open = open ? "1" : "0"; e.target.textContent = open ? "Simplified Mode" : "Show full detail"; }
 });
+
+/* ---------- embed communication (postMessage) ---------- */
+function notifyEmbed() {
+  if (window.parent && window.parent !== window) {
+    try {
+      const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+      window.parent.postMessage({ source: 'ai-wave-scorecard', type: 'resize', height: h }, '*');
+    } catch (e) {}
+  }
+}
+window.addEventListener('load', notifyEmbed);
+window.addEventListener('resize', notifyEmbed);
+document.addEventListener('click', () => setTimeout(notifyEmbed, 80));
 </script>
 
 
