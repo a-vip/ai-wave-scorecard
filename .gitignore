@@ -9,3 +9,4 @@ _source/
 public/index.html
 npm-debug.log*
 .DS_Store
+*.zip

@@ -1,0 +1,37 @@
+# AI Wave Scorecard — Hostinger LiteSpeed / Apache Rules
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /ai-wave/
+
+    # Pass Authorization header to PHP (essential for owner Bearer token)
+    SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Clean API Route rewrite
+    RewriteRule ^api/responses/?$ api/responses.php [L,QSA]
+    RewriteRule ^api/health/?$ api/responses.php [L,QSA]
+</IfModule>
+
+# Protect data folder
+<FilesMatch "^(responses-local\.json|\.env.*)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Caching for high-performance audio and illustrations
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType audio/mpeg "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+</IfModule>
+
+<IfModule mod_headers.c>
+    <FilesMatch "\.(mp3|webp|svg)$">
+        Header set Cache-Control "public, max-age=2592000, stale-while-revalidate=86400"
+    </FilesMatch>
+    <FilesMatch "\.(html|php)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+    </FilesMatch>
+</IfModule>

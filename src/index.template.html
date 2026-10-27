@@ -604,6 +604,7 @@ footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--hair);font-si
   <footer>This analysis report is an educational self-assessment, not a formal test. Scores are estimates to guide learning, and they will shift as you grow.</footer>
 </div>
 <script>
+const API_BASE = (location.pathname.includes("/ai-wave") ? "/ai-wave/api/responses" : "/api/responses");
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const CATS = {
@@ -2161,7 +2162,7 @@ async function saveResults() {
       phone: contact?.phone || "", interest: contact?.interest || "", consent: !!contact?.consent,
       website: ""
     };
-    const response = await fetch("/api/responses", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(payload) });
+    const response = await fetch(API_BASE, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(payload) });
     if (!response.ok) throw new Error((await response.json().catch(() => ({}))).error || "Saving failed");
     interestSaved = true;
     lastSavedScorecard = scorecardKey;
@@ -2185,7 +2186,7 @@ async function loadAdmin() {
     return;
   }
   try {
-    const response = await fetch("/api/responses", { headers: { authorization: "Bearer " + token } });
+    const response = await fetch(API_BASE, { headers: { authorization: "Bearer " + token } });
     if (!response.ok) { sessionStorage.removeItem("aiwave_admin_token"); throw new Error("Access key rejected"); }
     const docs = (await response.json()).records || [];
     if (!docs.length) { body.innerHTML = '<p class="small" style="margin-top:16px">No saved scorecards yet. They appear here after someone joins the waitlist.</p>'; return; }
