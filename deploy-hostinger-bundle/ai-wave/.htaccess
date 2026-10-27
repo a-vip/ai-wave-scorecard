@@ -1,14 +1,15 @@
 # AI Wave Scorecard — Hostinger LiteSpeed / Apache Rules
+DirectoryIndex index.html index.php
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /ai-wave/
 
     # Pass Authorization header to PHP (essential for owner Bearer token)
     SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-    # Clean API Route rewrite
+    # Clean API Route rewrite (relative to current directory)
     RewriteRule ^api/responses/?$ api/responses.php [L,QSA]
     RewriteRule ^api/health/?$ api/responses.php [L,QSA]
 </IfModule>

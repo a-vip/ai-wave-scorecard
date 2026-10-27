@@ -25,9 +25,11 @@ function json_response($data, $code = 200) {
 // 1. Try to load WordPress environment
 $wp_loaded = false;
 $possible_wp_paths = [
+    dirname(__DIR__, 6) . '/wp-load.php',
+    dirname(__DIR__, 5) . '/wp-load.php',
     dirname(__DIR__, 2) . '/wp-load.php',
     dirname(__DIR__, 1) . '/wp-load.php',
-    (isset($_SERVER['DOCUMENT_ROOT']) ? rtrim($_SERVER['DOCUMENT_ROOT'], '/') . '/wp-load.php' : '')
+    (isset($_SERVER['DOCUMENT_ROOT']) ? rtrim($_SERVER['DOCUMENT_ROOT'], '/\\') . '/wp-load.php' : '')
 ];
 
 foreach ($possible_wp_paths as $p) {

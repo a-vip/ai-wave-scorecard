@@ -604,7 +604,7 @@ footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--hair);font-si
   <footer>This analysis report is an educational self-assessment, not a formal test. Scores are estimates to guide learning, and they will shift as you grow.</footer>
 </div>
 <script>
-const API_BASE = (location.pathname.includes("/ai-wave") ? "/ai-wave/api/responses" : "/api/responses");
+const API_BASE = (location.pathname.includes("/ai-wave") || location.pathname.includes("/wp-content/") ? "api/responses.php" : "/api/responses");
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const CATS = {
