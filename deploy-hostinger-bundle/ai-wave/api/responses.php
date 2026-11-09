@@ -47,13 +47,14 @@ if (!$expected_token) {
 $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 
 /* =========================================================================
-   GET ?config=1: RETURN LIVE EDITABLE COPY & OFFER SETTINGS
+   GET ?config=1: RETURN LIVE EDITABLE COPY, OFFER SETTINGS & APPROVED REVIEWS
    ========================================================================= */
 if ($method === 'GET' && !empty($_GET['config'])) {
     if ($wp_loaded && function_exists('aiwave_get_settings')) {
-        json_response(['ok' => true, 'config' => aiwave_get_settings()]);
+        $reviews = function_exists('aiwave_get_approved_reviews') ? aiwave_get_approved_reviews() : [];
+        json_response(['ok' => true, 'config' => aiwave_get_settings(), 'reviews' => $reviews]);
     }
-    json_response(['ok' => true, 'config' => []]);
+    json_response(['ok' => true, 'config' => [], 'reviews' => []]);
 }
 
 /* =========================================================================
@@ -79,7 +80,7 @@ if ($method === 'POST') {
 
     // Action A: Track Offer Tier Click from Results or Home Page
     if ($action === 'offer_click') {
-        $offer_key = preg_replace('/[^a-z0-9_-]/i', '', (string)($body['offer'] ?? ''));
+        $offer_key = preg_replace('/[^a-z0-9_-]/i', '', (string)($body['offerIntent'] ?? $body['offer'] ?? ''));
         $email = strtolower(trim((string)($body['email'] ?? '')));
         if ($wp_loaded && !empty($offer_key)) {
             global $wpdb;
@@ -106,13 +107,49 @@ if ($method === 'POST') {
         json_response(['ok' => true, 'offer' => $offer_key]);
     }
 
-    // Action B: Save Scorecard or Quick Briefing Signup
+    // Action A2: Submit Participant / Diagnostic Review (Credibility & Social Proof Engine)
+    if ($action === 'submit_review') {
+        $r_name  = substr(trim((string)($body['name'] ?? '')), 0, 80);
+        $r_role  = substr(trim((string)($body['role'] ?? '')), 0, 100);
+        $r_quote = substr(trim((string)($body['quote'] ?? '')), 0, 800);
+        $r_stars = max(1, min(5, (int)($body['stars'] ?? 5)));
+        if (empty($r_name) || empty($r_quote)) {
+            json_response(['error' => 'Please include your name and review text.'], 400);
+        }
+        if ($wp_loaded) {
+            $reviews = get_option('aiwave_reviews', []);
+            if (!is_array($reviews)) {
+                $reviews = [];
+            }
+            $reviews[] = [
+                'id'         => uniqid('rev_'),
+                'name'       => sanitize_text_field($r_name),
+                'role'       => sanitize_text_field($r_role),
+                'quote'      => sanitize_textarea_field($r_quote),
+                'stars'      => $r_stars,
+                'status'     => 'pending',
+                'created_at' => gmdate('Y-m-d H:i:s'),
+            ];
+            update_option('aiwave_reviews', $reviews);
+            $admin_email = get_option('admin_email');
+            if ($admin_email && is_email($admin_email)) {
+                @wp_mail(
+                    $admin_email,
+                    '[AI Wave / Academy] New Review Submitted by ' . $r_name,
+                    "New review submitted for approval:\n\nName: {$r_name}\nRole: {$r_role}\nRating: {$r_stars}/5\nQuote: \"{$r_quote}\"\n\nApprove in 1 click: " . admin_url('admin.php?page=ai-wave-scorecards&tab=reviews')
+                );
+            }
+        }
+        json_response(['ok' => true]);
+    }
+
+    // Action B: Save Scorecard, Quick Briefing Signup, or Corporate Training Inquiry
     $name = trim((string)($body['name'] ?? ''));
     $email = strtolower(trim((string)($body['email'] ?? '')));
     $country = trim((string)($body['country'] ?? 'Not specified'));
     $phone = trim((string)($body['phone'] ?? ''));
     $interest = trim((string)($body['interest'] ?? ''));
-    $offer_intent = preg_replace('/[^a-z0-9_-]/i', '', (string)($body['offer_intent'] ?? ''));
+    $offer_intent = preg_replace('/[^a-z0-9_-]/i', '', (string)($body['offerIntent'] ?? $body['offer_intent'] ?? ''));
     $consent = !empty($body['consent']);
 
     if (empty($name)) {
@@ -128,7 +165,7 @@ if ($method === 'POST') {
         json_response(['error' => 'Consent is required'], 400);
     }
 
-    $version = in_array($body['version'] ?? '', ['quick', 'deep', 'full', 'briefing'], true) ? $body['version'] : 'quick';
+    $version = in_array($body['version'] ?? '', ['quick', 'deep', 'full', 'briefing', 'corporate', 'lab'], true) ? $body['version'] : 'quick';
     $zone = in_array($body['zone'] ?? '', ['drowning', 'wading', 'paddling', 'riding'], true) ? $body['zone'] : 'wading';
     $zone2 = in_array($body['zone2'] ?? '', ['drowning', 'wading', 'paddling', 'riding'], true) ? $body['zone2'] : '';
     $level = max(1, min(5, (int)($body['level'] ?? 1)));

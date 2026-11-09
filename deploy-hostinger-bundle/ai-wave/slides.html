@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Live Masterclass Deck — AI MetaLearning &amp; The AI Wave | Avi Perera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #071015;
+  --card: #0E1B22;
+  --ink: #EAF4F6;
+  --dim: #8CA5AE;
+  --hair: #1E333D;
+  --accent: #4CC3D2;
+  --gold: #F2B661;
+  --drown: #FF8B72;
+  --ride: #45D3BD;
+  --f-display: 'Bricolage Grotesque', system-ui, sans-serif;
+  --f-body: 'Manrope', system-ui, sans-serif;
+  --f-mono: 'JetBrains Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-body);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.deck-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--hair);
+  background: rgba(14, 27, 34, 0.85);
+  backdrop-filter: blur(12px);
+  z-index: 10;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.deck-brand {
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  text-decoration: none;
+}
+.deck-brand span.tag {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--accent);
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(76, 195, 210, 0.35);
+}
+.deck-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+button.ctrl {
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 7px 13px;
+  border-radius: 8px;
+  border: 1px solid var(--hair);
+  background: var(--card);
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+button.ctrl:hover { border-color: var(--accent); color: var(--accent); }
+button.ctrl.primary { background: var(--accent); color: #051014; border-color: var(--accent); font-weight: 800; }
+.slide-counter { font-family: var(--f-mono); font-size: 13px; color: var(--dim); min-width: 70px; text-align: center; }
+
+.stage-wrap {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  overflow: hidden;
+  position: relative;
+}
+.slide-stage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5vh 8vw;
+  position: relative;
+  overflow-y: auto;
+  background: radial-gradient(ellipse at 75% 20%, rgba(76, 195, 210, 0.09), transparent 60%), var(--bg);
+}
+.slide-inner {
+  max-width: 1060px;
+  width: 100%;
+  margin: 0 auto;
+  animation: slideIn 0.28s ease;
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+.eyebrow {
+  font-family: var(--f-mono);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+h1.slide-title {
+  font-family: var(--f-display);
+  font-size: clamp(32px, 4.6vw, 60px);
+  line-height: 1.08;
+  margin: 0 0 18px;
+  font-weight: 800;
+}
+p.slide-lede {
+  font-size: clamp(18px, 2.1vw, 24px);
+  color: var(--dim);
+  max-width: 64ch;
+  line-height: 1.55;
+  margin: 0 0 28px;
+}
+.slide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 18px;
+  margin-top: 20px;
+}
+.s-card {
+  background: var(--card);
+  border: 1px solid var(--hair);
+  border-top: 4px solid var(--accent);
+  border-radius: 16px;
+  padding: 22px;
+}
+.s-card.gold { border-top-color: var(--gold); }
+.s-card.drown { border-top-color: var(--drown); }
+.s-card.ride { border-top-color: var(--ride); }
+.s-card .big {
+  font-family: var(--f-mono);
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.s-card.gold .big { color: var(--gold); }
+.s-card.drown .big { color: var(--drown); }
+.s-card.ride .big { color: var(--ride); }
+.s-card h3 {
+  font-family: var(--f-display);
+  font-size: 21px;
+  margin: 0 0 8px;
+}
+.s-card p {
+  margin: 0;
+  font-size: 15.5px;
+  color: var(--dim);
+  line-height: 1.55;
+}
+.quote-banner {
+  margin-top: 24px;
+  padding: 18px 24px;
+  border-left: 4px solid var(--gold);
+  background: rgba(242, 182, 97, 0.08);
+  border-radius: 0 12px 12px 0;
+  font-size: 19px;
+  font-weight: 600;
+}
+.speaker-drawer {
+  width: 360px;
+  border-left: 1px solid var(--hair);
+  background: #0A151B;
+  padding: 22px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.speaker-drawer[hidden] { display: none !important; }
+.speaker-drawer h4 {
+  margin: 0;
+  font-family: var(--f-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+}
+.speaker-notes {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: #C7D9DF;
+  white-space: pre-line;
+}
+.progress-bar {
+  height: 4px;
+  background: var(--hair);
+  width: 100%;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--ride));
+  width: 0%;
+  transition: width 0.2s ease;
+}
+@media (max-width: 860px) {
+  .stage-wrap { grid-template-columns: 1fr; }
+  .speaker-drawer { width: 100%; border-left: none; border-top: 1px solid var(--hair); max-height: 35vh; }
+}
+</style>
+</head>
+<body>
+
+<div class="deck-topbar">
+  <a class="deck-brand" href="/ai-academy/">
+    <svg width="26" height="16" viewBox="0 0 26 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" style="color:var(--accent)"><path d="M1 11c3-6 6-6 8 0s5 6 8 0 5-6 8 0"/></svg>
+    <span>AI MetaLearning · Masterclass &amp; Executive Seminar Deck</span>
+    <span class="tag">Avi Perera</span>
+  </a>
+  <div class="deck-controls">
+    <button type="button" class="ctrl" id="prevBtn">&larr; Prev</button>
+    <span class="slide-counter" id="slideCount">1 / 14</span>
+    <button type="button" class="ctrl" id="nextBtn">Next &rarr;</button>
+    <button type="button" class="ctrl" id="notesBtn" aria-pressed="true">Speaker Notes (N)</button>
+    <button type="button" class="ctrl" id="fsBtn">Fullscreen (F)</button>
+    <a href="/ai-wave/" class="ctrl primary" style="text-decoration:none">Open Live Scorecard &rarr;</a>
+  </div>
+</div>
+<div class="progress-bar"><div class="progress-fill" id="progFill"></div></div>
+
+<div class="stage-wrap">
+  <main class="slide-stage" id="slideStage"></main>
+  <aside class="speaker-drawer" id="notesDrawer">
+    <h4>Presenter Script &amp; Delivery Cues</h4>
+    <div class="speaker-notes" id="speakerNotes"></div>
+  </aside>
+</div>
+
+<script>
+const SLIDES = [
+  {
+    eyebrow: "Slide 01 · Executive Briefing & Live Masterclass",
+    title: "The AI Meta-Skill: Filter the Noise, Keep What Lasts, and Build High-Trust Systems",
+    lede: "Why 88% of organizations use AI but only 6% see real ROI — and the 4-part operating system to move from AI overwhelm to compounding capability.",
+    cards: [
+      { cls: "", big: "Avi Perera", h: "Research, Governance & Systems", p: "Bridging University of Cambridge & UNIDIR/Geneva AI governance rigor with hands-on multi-agent workflows and operational systems." },
+      { cls: "gold", big: "45 Mins", h: "Interactive Session + Live Audit", p: "1. The Data Paradox · 2. The 4 AI Zones · 3. The Shelf-Life Filter · 4. Context & Verification Architecture · 5. Your 90-Day Route." }
+    ],
+    quote: "The bottleneck is no longer access to AI models. The bottleneck is human clarity, verification, and workflow design.",
+    notes: "Welcome everyone. [0:00 - 3:00]\n• Introduce yourself briefly: you work across two worlds that rarely talk to each other — high-stakes AI governance and international regulatory policy (Cambridge, UNIDIR, Geneva) AND hands-on building of multi-agent AI systems.\n• State the premise: Today is not another '10 ChatGPT hacks' webinar. Hacks expire in 3 weeks. Today you will learn a permanent operating system for adopting AI calmly, safely, and profitably."
+  },
+  {
+    eyebrow: "Slide 02 · The Empirical Reality Check",
+    title: "Three Numbers Every Leader & Professional Needs to See",
+    lede: "Everyone feels like they are falling behind. Here is what verified 2025–2026 research actually shows:",
+    cards: [
+      { cls: "ride", big: "≤ 3 Tools", h: "BCG Workforce Study (1,488 workers)", p: "Workers using 3 or fewer AI tools deeply reported higher productivity. Workers chasing 4 or more tools reported a sharp productivity drop due to context switching." },
+      { cls: "drown", big: "~95%", h: "MIT NANDA Initiative", p: "Roughly 95% of company AI pilots showed no measurable profit impact. The authors diagnosed a learning & workflow gap — not a technology gap." },
+      { cls: "gold", big: "6% vs 88%", h: "McKinsey State of AI", p: "88% of organizations now use AI in at least one function, yet only ~6% qualify as high performers generating meaningful EBIT impact." }
+    ],
+    quote: "More AI tools do not equal more output. Without a method, more tools only create faster noise.",
+    notes: "[3:00 - 8:00]\n• Walk through the three studies slowly. Let the relief sink in for the audience.\n• Ask the room/chat: 'How many of you have signed up for more than 4 AI tools or newsletters this year and felt MORE tired, not less?'\n• Point out that the 6% who win aren't using secret tools — they use fewer tools with structured context, verification, and SOPs."
+  },
+  {
+    eyebrow: "Slide 03 · The Diagnostic Map",
+    title: "The Four Zones of the AI Wave",
+    lede: "When we plot Skill & Systems (horizontal) against Calm & Clarity (vertical), every individual and team lands in one of four zones:",
+    cards: [
+      { cls: "drown", big: "01 · Drowning", h: "Low Skill · Low Calm", p: "Signing up for every new app, 40 tabs open, constant fear of being replaced, zero repeatable habits." },
+      { cls: "gold", big: "02 · Wading In", h: "Early Skill · High Calm", p: "Curious and open-minded, using AI for occasional ad-hoc chats, but starting from scratch every time." },
+      { cls: "", big: "03 · Paddling Hard", h: "High Skill · Low Calm", p: "Using AI daily and getting value, but exhausted — nothing is saved, standardized, or delegated safely." },
+      { cls: "ride", big: "04 · Riding the Wave", h: "High Skill · High Calm", p: "A tight 3-tool stack, saved prompt & context libraries, human-in-the-loop quality checks, and measurable hours saved." }
+    ],
+    quote: "People don't drown because of the size of the wave. They drown because of panic and lack of footing.",
+    notes: "[8:00 - 13:00]\n• Explain the 2x2 matrix.\n• Crucial insight for professionals & executives: Most high-achievers aren't in Drowning — they are stuck in PADDLING HARD. They use AI every day, but every prompt is typed from scratch, and their team's output quality swings wildly."
+  },
+  {
+    eyebrow: "Slide 04 · Pillar 1 of AI MetaLearning",
+    title: "The Shelf-Life Filter: Stop Learning Perishable Tricks",
+    lede: "Before you spend an hour learning any new AI tool or technique, classify its shelf life:",
+    cards: [
+      { cls: "drown", big: "Weeks", h: "Perishable (Ignore 90%)", p: "'Secret prompt hacks', viral app roundups, model leaderboard drama. Obsolete the moment the next model update drops." },
+      { cls: "gold", big: "Months", h: "Seasonal (Adopt Selectively)", p: "Specific UI workflows, custom GPTs/Projects, RAG connectors, automation glue (Make/n8n/Zapier). Useful when tied to a real bottleneck." },
+      { cls: "ride", big: "Years", h: "Evergreen (Master Deeply)", p: "Problem decomposition, Context Architecture, Few-Shot Specification, Verification & Guardrails, and Meaningful Human Control." }
+    ],
+    quote: "Invest 80% of your learning time in Evergreen foundations that automatically get stronger every time OpenAI, Anthropic, or Google upgrades their models.",
+    notes: "[13:00 - 18:00]\n• This is the core 'AI MetaLearning' concept.\n• Explain why 'Prompt Engineering tricks' from 2023 died, whereas clear specification, context curation, and verification rubrics work better on GPT-5/Claude Opus/Gemini than ever before."
+  },
+  {
+    eyebrow: "Slide 05 · Pillar 2 of AI MetaLearning",
+    title: "The Core 3 Tool Stack Rule",
+    lede: "How to eliminate subscription fatigue and cut your AI stack to three clear jobs:",
+    cards: [
+      { cls: "", big: "Job 01", h: "One Primary Reasoning & Drafting Partner", p: "Claude, ChatGPT, or Gemini configured with persistent Custom Instructions and workspace Projects for your core role." },
+      { cls: "gold", big: "Job 02", h: "One Grounded Research & Citation Engine", p: "NotebookLM, Perplexity, or Deep Research grounded strictly in your verified PDFs, contracts, or primary sources." },
+      { cls: "ride", big: "Job 03", h: "One Workflow & Capture Connector", p: "A single place where winning prompts, SOP checklists, and repeatable automations live so you never start from zero." }
+    ],
+    quote: "Rule: A new AI tool cannot enter your stack unless it replaces an existing tool or saves at least 2 measured hours per week.",
+    notes: "[18:00 - 23:00]\n• Give concrete examples of how you personally run your research and engineering workflows without drowning in 30 subscriptions.\n• Show how a lawyer, consultant, founder, or researcher only needs these 3 slots filled."
+  },
+  {
+    eyebrow: "Slide 06 · Pillar 3 of AI MetaLearning",
+    title: "Context Architecture: The 4-Part Specification",
+    lede: "Why most people get generic, robotic answers — and the 4-block structure that fixes 90% of weak outputs on the first try:",
+    cards: [
+      { cls: "", big: "1. Role & Mandate", h: "Who the model is & what standard it upholds", p: "Define domain expertise, tone, and what the model must refuse to guess." },
+      { cls: "gold", big: "2. Grounded Context", h: "Audience, constraints & source material", p: "Never ask AI to write in a vacuum. Feed the exact brief, client constraints, and background data." },
+      { cls: "ride", big: "3. Few-Shot Gold Standard", h: "Show one example of 'A+ work'", p: "One real paragraph or table of your best past work teaches style 10x faster than adjectives." },
+      { cls: "drown", big: "4. Self-Critique Rubric", h: "Force verification before output", p: "Instruct the model to check its draft against 3 explicit failure criteria before presenting the final answer." }
+    ],
+    quote: "Don't prompt like you're using a search engine. Brief AI like you're delegating to a brilliant new senior analyst on their first day.",
+    notes: "[23:00 - 30:00]\n• Live demo moment! Open the Interactive Prompt & Context Architect on /ai-academy/ and build a prompt live for someone in the audience.\n• Show the difference between a 1-sentence prompt and a 4-Part Context Specification."
+  },
+  {
+    eyebrow: "Slide 07 · Pillar 4 (Enterprise & Professional Edge)",
+    title: "Verification, Privacy & Meaningful Human Control",
+    lede: "Drawn from international AI governance & high-stakes compliance: how professionals use AI without risking reputation, client data, or accuracy.",
+    cards: [
+      { cls: "drown", big: "Data Boundary", h: "The Red / Amber / Green PII Rule", p: "What never enters a public model (Red), what requires zero-retention/enterprise API settings (Amber), and what is safe (Green)." },
+      { cls: "gold", big: "Hallucination Trap", h: "Open-Book vs. Closed-Book Tasks", p: "Never use closed-book generation for citations, legal/medical facts, or numbers. Enforce RAG / source-grounded extraction." },
+      { cls: "ride", big: "Human Checkpoint", h: "Rule-Based vs. Judgment Split", p: "Automate rule-based drafting and formatting; keep a mandatory human sign-off gate on every external-facing decision." }
+    ],
+    quote: "Genuine accountability cannot be retrofitted. Build the human checkpoint into the workflow from Day 1.",
+    notes: "[30:00 - 36:00]\n• This slide separates you from 99% of AI trainers on the internet.\n• Companies, law firms, NGOs, and executives are terrified of employees leaking confidential data or publishing hallucinated numbers.\n• Explain how a 1-page AI Usage & Verification Policy unlocks safe adoption across a whole organization."
+  },
+  {
+    eyebrow: "Slide 08 · Turning Insight into Action",
+    title: "Your 90-Day Implementation Roadmap",
+    lede: "How we move individuals and teams from 'experimenting with chat' to measurable weekly ROI:",
+    cards: [
+      { cls: "", big: "Days 1–30", h: "Calm Foundations & Core Stack", p: "Audit current tools, cut the noise, configure persistent context, and lock in your first 3 hours/week saved." },
+      { cls: "gold", big: "Days 31–60", h: "Reusable Playbooks & Grounded Knowledge", p: "Build your saved Prompt & SOP Library, connect your own documents safely, and eliminate repetitive drafting." },
+      { cls: "ride", big: "Days 61–90", h: "Workflows, Automation & Team Governance", p: "Automate multi-step handoffs with human checkpoints and establish a 1-page team governance & quality rubric." }
+    ],
+    quote: "One workflow that saves 45 minutes every single day is worth 30 full workdays a year.",
+    notes: "[36:00 - 40:00]\n• Walk through the 30-60-90 progression.\n• Emphasize that time is the one resource nobody can earn back — the goal is buying back 3 to 6 hours every week."
+  },
+  {
+    eyebrow: "Slide 09 · Ways to Work Together",
+    title: "Join the 15-Seat Founding Cohort or Bring This to Your Team",
+    lede: "Take the free 4-minute diagnostic at aviperera.com/ai-wave — then choose the path that fits your goals:",
+    cards: [
+      { cls: "", big: "Step 1 · Free", h: "Take the AI Wave Scorecard + Interactive Lab", p: "Get your exact Zone, Skill & Calm coordinates, and use the free Prompt Architect & ROI Calculator at aviperera.com/ai-academy." },
+      { cls: "gold", big: "$100 Deposit", h: "15-Seat Founding Cohort (4 Weeks Live)", p: "Small-group live implementation with Avi. We build your Core Stack, Prompt Library, and custom workflows together. 100% refundable before Day 1." },
+      { cls: "ride", big: "Corporate / B2B", h: "Executive Seminars & Team Workshops", p: "Hire Avi for a 90-minute Executive Briefing, Half-Day Team Workshop, or Institutional AI Governance & EU AI Act Readiness Audit." }
+    ],
+    quote: "Visit aviperera.com/ai-wave or aviperera.com/ai-academy right now to start your diagnostic and lock your spot.",
+    notes: "[40:00 - 45:00]\n• Invite everyone to open aviperera.com/ai-wave on their phone or laptop right now.\n• Mention the 15-seat cap on the founding cohort (and the $7 price lock option if they aren't sure of their schedule yet).\n• Invite executives/team leads to inquire about private company workshops on /ai-academy/."
+  }
+];
+
+let idx = 0;
+function renderSlide() {
+  const s = SLIDES[idx];
+  document.getElementById("slideCount").textContent = `${idx + 1} / ${SLIDES.length}`;
+  document.getElementById("progFill").style.width = `${((idx + 1) / SLIDES.length) * 100}%`;
+  document.getElementById("slideStage").innerHTML = `
+    <div class="slide-inner">
+      <div class="eyebrow">${s.eyebrow}</div>
+      <h1 class="slide-title">${s.title}</h1>
+      <p class="slide-lede">${s.lede}</p>
+      <div class="slide-grid">
+        ${s.cards.map(c => `<div class="s-card ${c.cls}"><div class="big">${c.big}</div><h3>${c.h}</h3><p>${c.p}</p></div>`).join("")}
+      </div>
+      <div class="quote-banner">“${s.quote}”</div>
+    </div>
+  `;
+  document.getElementById("speakerNotes").textContent = s.notes;
+}
+
+document.getElementById("prevBtn").addEventListener("click", () => { if (idx > 0) { idx--; renderSlide(); } });
+document.getElementById("nextBtn").addEventListener("click", () => { if (idx < SLIDES.length - 1) { idx++; renderSlide(); } });
+document.getElementById("notesBtn").addEventListener("click", (e) => {
+  const dr = document.getElementById("notesDrawer");
+  dr.hidden = !dr.hidden;
+  e.target.setAttribute("aria-pressed", String(!dr.hidden));
+});
+document.getElementById("fsBtn").addEventListener("click", () => {
+  if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {});
+  else document.exitFullscreen().catch(() => {});
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight" || e.key === " ") { e.preventDefault(); if (idx < SLIDES.length - 1) { idx++; renderSlide(); } }
+  if (e.key === "ArrowLeft") { e.preventDefault(); if (idx > 0) { idx--; renderSlide(); } }
+  if (e.key.toLowerCase() === "n") document.getElementById("notesBtn").click();
+  if (e.key.toLowerCase() === "f") document.getElementById("fsBtn").click();
+});
+renderSlide();
+</script>
+</body>
+</html>

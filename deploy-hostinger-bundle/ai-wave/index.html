@@ -566,6 +566,7 @@ details.deep-drawer[open] > summary::after{content:"Collapse −"}
       <button class="tab" role="tab" id="tab-examples" aria-selected="false" data-tab="examples">Stories</button>
       <button class="tab" role="tab" id="tab-jargon" aria-selected="false" data-tab="jargon">Glossary</button>
       <button class="tab" role="tab" id="tab-history" aria-selected="false" data-tab="history">History</button>
+      <button class="tab" role="tab" id="tab-lab" aria-selected="false" data-tab="lab">AI Lab &amp; B2B</button>
       <button class="tab" role="tab" id="tab-quiz" aria-selected="false" data-tab="quiz">Start Diagnostic &rarr;</button>
       <button class="tab" role="tab" id="tab-admin" aria-selected="false" data-tab="admin" hidden>Responses</button>
     </div>
@@ -652,6 +653,28 @@ details.deep-drawer[open] > summary::after{content:"Collapse −"}
       <div class="status ok" id="homeOfferStatus" hidden></div>
     </div>
 
+    <!-- Interactive Value Lab, Masterclass Deck & B2B Corporate Training Bridge -->
+    <div class="box" style="margin-top:16px;border-left:4px solid var(--accent)">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap">
+        <div>
+          <div class="eyebrow">Hands-On Proof of Value · Individuals &amp; Enterprise Teams</div>
+          <h3 style="margin:4px 0 6px;font-size:19px;font-family:var(--f-display);text-transform:none;letter-spacing:0;color:var(--ink)">Try the Free AI Meta-Learning Lab, Masterclass Deck &amp; Team Workshops</h3>
+          <p class="small" style="margin:0;max-width:64ch">Use our live 4-Layer Context Architect, calculate your team's AI ROI, inspect the 4-week cohort syllabus, or inquire about bringing Avi in for an executive seminar or corporate workshop.</p>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button type="button" class="primary sm" data-goto="lab">Open Interactive AI Lab &rarr;</button>
+          <a href="/ai-academy/" target="_top" class="ghost sm" style="text-decoration:none;display:inline-flex;align-items:center">Full Academy &amp; B2B Hub &nearr;</a>
+          <a href="slides.html" target="_blank" rel="noopener" class="ghost sm" style="text-decoration:none;display:inline-flex;align-items:center">9-Slide Masterclass Deck &nearr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verified Reviews & Authority Strip on Home -->
+    <div class="box" style="margin-top:16px">
+      <h3>What Participants &amp; Readers Say <span class="seat-pill">Cambridge · UNIDIR · Applied AI Systems</span></h3>
+      <div class="pillars" id="homeReviewsGrid" style="margin-top:10px"></div>
+    </div>
+
     <!-- Quick 10-Second Email Briefing Capture Bar -->
     <div class="briefing-bar" id="briefingBar">
       <div>
@@ -725,6 +748,112 @@ details.deep-drawer[open] > summary::after{content:"Collapse −"}
     <label for="gsearch" class="small" style="display:block;margin-top:18px">Search a term</label>
     <input id="gsearch" class="search" type="search" placeholder="Try: hallucination, agent, RAG">
     <div class="gloss" id="glossGrid"></div>
+  </section>
+
+  <section id="panel-lab" role="tabpanel" aria-labelledby="tab-lab" hidden>
+    <div class="intro">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+        <div>
+          <div class="eyebrow">Hands-On Value Lab · Cohort Syllabus · Enterprise Seminars</div>
+          <h2 style="margin:4px 0 8px;font-size:22px">Experience the AI MetaLearning Method Right Now</h2>
+          <p style="margin:0;max-width:65ch">Before you join the 15-seat cohort or book a corporate workshop for your team, test our live 4-Layer Context Architect below, review the 4-week curriculum, or open the full Academy platform.</p>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <a href="/ai-academy/" target="_top" class="primary sm" style="text-decoration:none;display:inline-flex;align-items:center">Open Full AI Academy &amp; ROI Calculator &nearr;</a>
+          <a href="slides.html" target="_blank" rel="noopener" class="ghost sm" style="text-decoration:none;display:inline-flex;align-items:center">9-Slide Masterclass Deck &nearr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Tool: 4-Layer Context & Prompt Architect -->
+    <div class="box" style="margin-top:16px">
+      <h3>Interactive Tool · The 4-Layer First-Principles Context Architect</h3>
+      <p class="small" style="margin:0 0 12px">Select your role, workflow, and verification guardrail below to generate a structured 4-layer prompt scaffold you can copy into Claude, ChatGPT, or Gemini.</p>
+      <div class="two" style="align-items:start">
+        <div>
+          <div class="field" style="margin-bottom:10px">
+            <label for="labRole">1. Your Role</label>
+            <select id="labRole" style="font:inherit;font-size:14px;padding:10px 12px;border-radius:10px;border:1px solid var(--hair);background:var(--bg);color:var(--ink)">
+              <option value="Executive / Founder">Executive / Founder / Strategy Lead</option>
+              <option value="Legal / Policy / Compliance Counsel">Legal / Policy / Compliance Counsel</option>
+              <option value="Researcher / Analyst">Researcher / Academic / Analyst</option>
+              <option value="Operations / Product Lead">Operations / Product / Engineering Lead</option>
+              <option value="Consultant / Advisor">Consultant / Client Advisory</option>
+            </select>
+          </div>
+          <div class="field" style="margin-bottom:10px">
+            <label for="labTask">2. Core Workflow</label>
+            <select id="labTask" style="font:inherit;font-size:14px;padding:10px 12px;border-radius:10px;border:1px solid var(--hair);background:var(--bg);color:var(--ink)">
+              <option value="synthesis">Synthesize Complex Documents into a 1-Page Decision Brief</option>
+              <option value="redteam">Red-Team &amp; Stress-Test a Strategy or Policy Proposal</option>
+              <option value="sop">Convert a Repeating Task into a Team SOP + Verification Gate</option>
+              <option value="outreach">Draft High-Authority Stakeholder / Client Communication</option>
+            </select>
+          </div>
+          <div class="field" style="margin-bottom:10px">
+            <label for="labGoal">3. Specific Topic or Deliverable (Optional)</label>
+            <input type="text" id="labGoal" placeholder="e.g. Q4 EU AI Act compliance review or board briefing">
+          </div>
+          <div class="row-actions" style="margin-top:12px">
+            <button type="button" class="primary sm" id="labCopyBtn">Copy 4-Layer Context Scaffold</button>
+            <button type="button" class="ghost sm" data-goto="quiz">Take 4-Min Diagnostic &rarr;</button>
+          </div>
+        </div>
+        <div>
+          <textarea class="copybox" id="labOutput" readonly style="margin-top:0;min-height:245px;font-size:12px;line-height:1.5"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4-Week Flagship Cohort Syllabus & B2B Corporate Seminars -->
+    <div class="two">
+      <div class="box">
+        <h3>4-Week Flagship Cohort Syllabus <span class="seat-pill">15 Founding Seats</span></h3>
+        <div class="path">
+          <div class="step"><div class="when">Week 1</div><div><div class="what">First Principles &amp; The Shelf-Life Filter</div><p>Audit and prune tool bloat down to your Core-3 AI Stack.</p></div></div>
+          <div class="step"><div class="when">Week 2</div><div><div class="what">Context Architecture &amp; Grounded RAG</div><p>Build reusable 4-layer context libraries and hallucination-free research engines.</p></div></div>
+          <div class="step"><div class="when">Week 3</div><div><div class="what">Verification, Privacy &amp; Human Control</div><p>Install the 3-Gate Verification Protocol and EU AI Act / client data guardrails.</p></div></div>
+          <div class="step"><div class="when">Week 4</div><div><div class="what">Multi-Step Workflows &amp; Agent Pipelines</div><p>Ship an end-to-end automated workflow saving 5–10 hours/week.</p></div></div>
+        </div>
+      </div>
+
+      <div class="box" style="border-left:4px solid var(--z-wade)">
+        <h3>Hire Avi for Corporate &amp; Team Seminars <span class="seat-pill">B2B / Enterprise</span></h3>
+        <p style="margin:0 0 10px;font-size:14.5px">Combining University of Cambridge &amp; UNIDIR/Geneva AI governance rigor with production multi-agent systems engineering, Avi trains executive teams, law firms, NGOs, and high-output organizations.</p>
+        <ul class="traits">
+          <li><b>90-Min Executive Seminar:</b> Cutting AI noise, the Core-3 Stack Rule, and live team diagnostic.</li>
+          <li><b>Half-Day Applied Team Workshop:</b> Converting your team's top 3 bottlenecks into shared Context Scaffolds.</li>
+          <li><b>AI Governance &amp; EU AI Act Briefing:</b> Operationalizing Meaningful Human Control and eliminating Shadow AI.</li>
+        </ul>
+        <div class="row-actions" style="margin-top:14px">
+          <a href="/ai-academy/#corporate-inquiry" target="_top" class="primary sm" style="text-decoration:none">Request Team Workshop Proposal &rarr;</a>
+          <a href="slides.html" target="_blank" rel="noopener" class="ghost sm" style="text-decoration:none">Preview Seminar Slides &nearr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verified Reviews + Submit a Review -->
+    <div class="box" style="margin-top:16px">
+      <h3>Verified Reviews &amp; Endorsements</h3>
+      <div class="pillars" id="labReviewsGrid" style="margin-top:10px"></div>
+      <details class="q-more" style="margin-top:14px">
+        <summary>+ Leave a 30-second review or endorsement &rarr;</summary>
+        <div style="margin-top:12px">
+          <div class="fields">
+            <div class="field"><label for="rName">Your Name (or Initials) *</label><input id="rName" maxlength="80" placeholder="e.g. Dr. M. Patel"></div>
+            <div class="field"><label for="rRole">Role / Organization *</label><input id="rRole" maxlength="100" placeholder="e.g. Senior Counsel · London"></div>
+          </div>
+          <div class="field" style="margin-top:8px">
+            <label for="rQuote">What stood out most or helped you gain clarity? *</label>
+            <textarea id="rQuote" rows="2" maxlength="600" style="width:100%;font:inherit;font-size:14px;padding:10px;border-radius:10px;border:1px solid var(--hair);background:var(--bg);color:var(--ink)" placeholder="Share your experience with the diagnostic, lab, or briefing..."></textarea>
+          </div>
+          <div class="row-actions" style="margin-top:10px">
+            <button type="button" class="primary sm" id="submitReviewBtn">Submit Review</button>
+          </div>
+          <div class="status" id="reviewStatus"></div>
+        </div>
+      </details>
+    </div>
   </section>
 
   <section id="panel-quiz" role="tabpanel" aria-labelledby="tab-quiz" hidden>
@@ -2013,7 +2142,7 @@ function renderGlossary(qs) {
 function showTab(t) {
   tab = t;
   document.querySelectorAll(".tab").forEach((b) => b.setAttribute("aria-selected", b.dataset.tab === t ? "true" : "false"));
-  ["home", "history", "zones", "trends", "examples", "jargon", "quiz", "admin"].forEach((k) => { $("panel-" + k).hidden = k !== t; });
+  ["home", "history", "zones", "trends", "examples", "jargon", "lab", "quiz", "admin"].forEach((k) => { if ($("panel-" + k)) $("panel-" + k).hidden = k !== t; });
   const heroMap = {
     home: [CONFIG.heroKicker, CONFIG.heroTitle],
     history: ["Historical Perspective", "We've faced the future before"],
@@ -2021,11 +2150,12 @@ function showTab(t) {
     trends: ["Verified Data · Plain Words", "How fast is the AI wave moving?"],
     examples: ["Real-World Profiles", "What each zone looks like in real life"],
     jargon: ["Plain-Language Glossary", "AI words, without the fog"],
+    lab: ["Interactive AI Lab · Cohort · Corporate Seminars", "Build First-Principles AI Systems That Compound"],
     quiz: ["Interactive Diagnostic", result ? "Your Diagnostic Results & Route" : "Find where you stand on the AI wave"],
     admin: ["Owner View", "Saved Scorecards & Insights"]
   };
-  $("kicker").textContent = heroMap[t][0];
-  $("title").textContent = heroMap[t][1];
+  $("kicker").textContent = (heroMap[t] || heroMap.home)[0];
+  $("title").textContent = (heroMap[t] || heroMap.home)[1];
   $("lede").hidden = !(t === "zones" || t === "home");
   if ($("heroActions")) $("heroActions").hidden = (t !== "home");
   $("lede").textContent = t === "home" ? CONFIG.heroSubtitle : "Some people are riding the wave, many are paddling hard, and plenty feel like they're drowning in tools and headlines. Compare the 4 zones below.";
@@ -2419,6 +2549,19 @@ function renderResults() {
       <p class="small" style="margin-top:12px">Timelines are estimates based on how skills usually build, not promises. Hover or tap a term above, or open the Glossary tab for plain definitions.</p></div>
     <details class="deep-drawer"><summary>View detailed category raw scores</summary><div style="margin-top:12px"><table class="tbl">${scoreRows}</table>${flagTxt}</div></details>
     ${nextVer ? `<div class="cta"><p>Want a sharper route? The ${VERSIONS[nextVer].name} adds ${VERSIONS[nextVer].n - VERSIONS[r.version].n} questions (about ${VERSIONS[nextVer].mins - VERSIONS[r.version].mins} more minutes) and keeps your answers.</p><button type="button" class="primary" data-upgrade="${nextVer}">Continue to ${VERSIONS[nextVer].name} &rarr;</button></div>` : ""}
+    <div class="box" style="border-left:4px solid var(--z-ride)">
+      <h3>Found this diagnostic helpful? Leave a 30-second review</h3>
+      <p class="small" style="margin:0 0 8px">Your feedback helps other professionals discover the scorecard and informs our upcoming cohort sessions.</p>
+      <div class="fields">
+        <div class="field"><label for="resRevRole">Your Role / Field</label><input id="resRevRole" maxlength="80" placeholder="e.g. Founder, Legal Counsel, Researcher"></div>
+        <div class="field" style="flex:2"><label for="resRevQuote">One sentence on what stood out *</label><input id="resRevQuote" maxlength="400" placeholder="e.g. Pinpointed why tool sprawl was slowing my week down..."></div>
+      </div>
+      <div class="row-actions" style="margin-top:10px">
+        <button type="button" class="primary sm" id="resSubmitReviewBtn">Submit Quick Review</button>
+        <button type="button" class="ghost sm" data-goto="lab">Try the Free 4-Layer Prompt Architect &rarr;</button>
+      </div>
+      <div class="status" id="resReviewStatus"></div>
+    </div>
     <div class="box"><h3>Your copy</h3>
       <div class="row-actions" style="margin-top:0"><button type="button" class="ghost" id="copyBtn">Copy my results</button>${contact ? '<button type="button" class="ghost" id="saveBtn">Save again</button>' : ""}<button type="button" class="ghost" id="retakeBtn">Start over</button></div>
       <div class="status" id="saveStatus" role="status"></div>
@@ -2580,6 +2723,74 @@ async function loadAdmin() {
   }
 }
 
+/* ---------- Interactive Lab & Verified Reviews ---------- */
+let REVIEWS = [
+  { name: "Executive Strategy Participant", role: "Legal & Regulatory Advisory", rating: 5, quote: "The 5-Question Shelf-Life Filter and Core-3 Stack rule immediately stopped our team from chasing every new AI wrapper. We cut our research synthesis time in half while tightening citation verification." },
+  { name: "Policy & Governance Researcher", role: "International Organization · Geneva", rating: 5, quote: "Very few educators understand both the technical reality of multi-agent workflows and the institutional guardrails of the EU AI Act and Meaningful Human Control. Avi bridges both effortlessly." },
+  { name: "Founder & Managing Director", role: "B2B Advisory Firm", rating: 5, quote: "Taking the 4-minute scorecard pinpointed why I was stuck in the Paddling zone: zero reusable context architecture. The 4-Layer Context Scaffold alone is worth the price of admission." }
+];
+
+function renderReviews() {
+  const html = REVIEWS.slice(0, 6).map((r) => {
+    const stars = "★".repeat(Math.max(1, Math.min(5, +r.rating || 5)));
+    return `<div class="pillar"><div class="pillar-k" style="color:var(--z-wade)">${stars}</div><p style="margin:8px 0 10px;font-size:13.5px;color:var(--ink);font-style:italic">"${esc(r.quote)}"</p><div class="small"><b style="color:var(--ink)">${esc(r.name)}</b>${r.role ? ` · ${esc(r.role)}` : ""}</div></div>`;
+  }).join("");
+  if ($("homeReviewsGrid")) $("homeReviewsGrid").innerHTML = html;
+  if ($("labReviewsGrid")) $("labReviewsGrid").innerHTML = html;
+}
+
+function buildLabScaffold() {
+  const out = $("labOutput");
+  if (!out) return;
+  const role = $("labRole")?.value || "Executive / Founder";
+  const task = $("labTask")?.value || "synthesis";
+  const goal = ($("labGoal")?.value || "").trim() || "our upcoming high-stakes deliverable";
+  const map = {
+    synthesis: {
+      m: "Synthesize complex source material into a 1-page Executive Decision Brief without fabricating claims.",
+      s: "1. Extract verbatim claims, numbers, and dates into a verified source table.\n2. Identify 3 strategic implications and 2 unresolved risks.\n3. Draft a concise Decision Brief with clear options (Recommend / Mitigate / Reject)."
+    },
+    redteam: {
+      m: "Act as an adversarial Red-Team reviewer to surface blind spots, regulatory risks, and operational bottlenecks.",
+      s: "1. Steelman the strongest version of the proposal.\n2. Identify the top 3 failure modes (technical, governance/legal, adoption).\n3. Propose concrete pre-mortem mitigations for each."
+    },
+    sop: {
+      m: "Transform a repeating workflow into a delegation-ready Standard Operating Procedure (SOP) with quality gates.",
+      s: "1. Map Trigger -> Inputs -> Step-by-Step Execution -> Human Verification Gate -> Output.\n2. Specify which steps AI handles vs. which require Meaningful Human Control.\n3. Provide a 5-point Definition of Done checklist."
+    },
+    outreach: {
+      m: "Draft high-authority, zero-fluff executive communication calibrated for senior decision-makers.",
+      s: "1. Lead with the structural problem and quantified stakes.\n2. Present a clear, low-friction next step.\n3. Strip generic AI cliches ('delve', 'testament', 'game-changer')."
+    }
+  };
+  const chosen = map[task] || map.synthesis;
+  out.value = `# LAYER 1: SYSTEM MANDATE & ROLE\nYou are a principal advisor supporting a ${role}.\nObjective: ${chosen.m}\nActive Focus: ${goal}\n\n# LAYER 2: GROUNDED CONTEXT\n[PASTE SOURCE DOCUMENTS OR NOTES HERE]\nAudience: Senior decision-makers who value precision, evidence, and brevity.\n\n# LAYER 3: EXECUTION PROTOCOL\n${chosen.s}\n\n# LAYER 4: VERIFICATION & MEANINGFUL HUMAN CONTROL\nCite exact source passages for every factual claim. Output "[UNVERIFIED - CHECK SOURCE]" rather than guessing. Append a 3-point Human Verification Checklist at the end.`;
+}
+
+async function submitReview(isFromResults) {
+  const name = isFromResults ? (contact?.name || "Scorecard Participant") : ($("rName")?.value || "").trim();
+  const role = isFromResults ? ($("resRevRole")?.value || "").trim() : ($("rRole")?.value || "").trim();
+  const quote = isFromResults ? ($("resRevQuote")?.value || "").trim() : ($("rQuote")?.value || "").trim();
+  const st = $(isFromResults ? "resReviewStatus" : "reviewStatus");
+  if (!name || !quote) {
+    if (st) { st.className = "status bad"; st.textContent = "Please add your comment before submitting."; }
+    return;
+  }
+  if (st) { st.className = "status"; st.textContent = "Submitting your review…"; }
+  try {
+    await fetch(API_BASE, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ action: "submit_review", name, role, rating: 5, quote })
+    });
+    if (st) { st.className = "status ok"; st.textContent = "Thank you! Your review has been sent to Avi."; }
+    if (isFromResults && $("resRevQuote")) $("resRevQuote").value = "";
+    if (!isFromResults && $("rQuote")) $("rQuote").value = "";
+  } catch (e) {
+    if (st) { st.className = "status bad"; st.textContent = "Could not submit right now."; }
+  }
+}
+
 /* ---------- wiring ---------- */
 if (new URLSearchParams(location.search).has("owner")) $("tab-admin").hidden = false;
 document.querySelectorAll(".tab").forEach((b) => b.addEventListener("click", () => showTab(b.dataset.tab)));
@@ -2596,6 +2807,18 @@ document.addEventListener("click", (e) => {
   const oc = e.target.closest("[data-offer-cta]"); if (oc) { selectOfferTier(oc.dataset.offerCta); return; }
   if (e.target.id === "heroWatchBtn") { $("tTrailer")?.scrollIntoView({ behavior: "smooth", block: "center" }); tPlay(); return; }
   if (e.target.id === "briefingBtn") { submitBriefing(); return; }
+  if (e.target.id === "submitReviewBtn") { submitReview(false); return; }
+  if (e.target.id === "resSubmitReviewBtn") { submitReview(true); return; }
+  if (e.target.id === "labCopyBtn") {
+    const out = $("labOutput");
+    if (out && navigator.clipboard) {
+      navigator.clipboard.writeText(out.value).then(() => {
+        e.target.textContent = "Copied to Clipboard! ✓";
+        setTimeout(() => { e.target.textContent = "Copy 4-Layer Context Scaffold"; }, 2000);
+      });
+    }
+    return;
+  }
   if (e.target.id === "modeStepBtn") { quizMode = "step"; renderForm(); return; }
   if (e.target.id === "modeListBtn") { quizMode = "list"; renderForm(); return; }
   const g = e.target.closest("[data-goto]"); if (g) { showTab(g.dataset.goto); return; }
@@ -2605,6 +2828,10 @@ document.addEventListener("click", (e) => {
   if (e.target.id === "saveBtn") saveResults();
   if (e.target.id === "unlockBtn") unlock();
   if (e.target.id === "retakeBtn") { answers = {}; notes = {}; version = null; result = null; contact = null; interestSaved = false; lastSavedScorecard = ""; saveDraft(); renderStatic(); updateQuizView(); showTab("quiz"); }
+});
+["labRole", "labTask", "labGoal"].forEach((id) => {
+  $(id)?.addEventListener("change", buildLabScaffold);
+  $(id)?.addEventListener("input", buildLabScaffold);
 });
 document.addEventListener("keydown", (e) => {
   if (tab === "quiz" && version && !result && quizMode === "step" && !["INPUT", "TEXTAREA"].includes(document.activeElement?.tagName)) {
@@ -2623,6 +2850,8 @@ $("gsearch").addEventListener("input", (e) => renderGlossary(e.target.value));
 
 loadDraft();
 renderStatic();
+renderReviews();
+buildLabScaffold();
 if (version) { renderForm(); updateProg(); }
 renderHome();
 renderTranscript();
@@ -2642,6 +2871,7 @@ window.addEventListener("message", (e) => {
 });
 fetch(API_BASE + "?config=1").then((r) => r.ok ? r.json() : null).then((d) => {
   if (d && d.config) applyLiveConfig(d.config);
+  if (d && Array.isArray(d.reviews) && d.reviews.length) { REVIEWS = d.reviews; renderReviews(); }
 }).catch(() => {});
 
 
